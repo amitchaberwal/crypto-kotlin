@@ -13,9 +13,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.test.cryptotut.presentation.coin_detail.CoinDetailScreen
 import com.test.cryptotut.presentation.coin_screen.CoinListScreen
 import com.test.cryptotut.presentation.theme.CryptoTutTheme
@@ -37,25 +39,16 @@ class MainActivity : ComponentActivity() {
                         composable(route = ScreenRoute.coinDetailRoute.route + "/{coinId}"){
                             CoinDetailScreen(navController = navController)
                         }
+//                        composable(route = ScreenRoute.coinDetailRoute.route + "/{coinId}", arguments = listOf(
+//                            navArgument("coinId"){
+//                                type = NavType.StringType
+//                            }
+//                        )){
+//                            CoinDetailScreen(navController = navController)
+//                        }
                     }
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    CryptoTutTheme {
-        Greeting("Android")
     }
 }

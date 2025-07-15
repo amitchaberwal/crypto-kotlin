@@ -15,17 +15,21 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent :: class)
 object AppModule {
+
     @Provides
     @Singleton
-    fun providePeprikaApi(): RemotePaprikaApi{
+    fun retrofitProvider(): Retrofit{
         return Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(RemotePaprikaApi::class.java)
     }
 
-
+    @Provides
+    @Singleton
+    fun providePeprikaApi(): RemotePaprikaApi{
+        return retrofitProvider().create(RemotePaprikaApi::class.java)
+    }
 
     @Provides
     @Singleton
